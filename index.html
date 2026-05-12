@@ -58,6 +58,7 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 #dice-display { font-size: 3em; font-weight: 800; color: var(--warning); min-width: 80px; display: inline-block; transition: transform 0.15s; }
 
 /* ===== Question ===== */
+#q-label { font-size: 0.85em; color: var(--text-secondary); margin-bottom: var(--sp-1); }
 #question-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-3); text-align: center; margin-bottom: var(--sp-3); }
 #question-text { font-size: 1.6em; font-weight: 700; color: var(--warning); margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums; }
 .answer-row { display: flex; gap: var(--sp-2); justify-content: center; align-items: center; flex-wrap: wrap; }
@@ -131,6 +132,7 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
       <div id="dice-display">?</div>
     </div>
     <div id="question-box" style="display:none">
+      <div id="q-label"></div>
       <div id="question-text"></div>
       <div class="answer-row">
         <input type="number" id="answer-input" placeholder="输入答案" aria-label="答案">
