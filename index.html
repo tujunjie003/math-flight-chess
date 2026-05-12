@@ -31,7 +31,7 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 
 /* ===== Board ===== */
 #board { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-4); overflow-x: auto; }
-.board-cells { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.board-cells { display: flex; gap: 6px; flex-wrap: nowrap; justify-content: flex-start; }
 .cell { width: 48px; height: 48px; background: var(--surface-hover); border: 1px solid var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 0.85em; font-weight: 600; color: var(--text-secondary); position: relative; flex-shrink: 0; transition: all var(--duration-base); }
 .cell-start { background: rgba(52,199,89,0.15); border-color: var(--success); color: var(--success); }
 .cell-finish { background: rgba(251,191,36,0.15); border-color: var(--warning); color: var(--warning); }
