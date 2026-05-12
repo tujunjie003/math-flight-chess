@@ -42,7 +42,10 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 .token-3 { top: 2px; left: 2px; }
 
 /* ===== Team Panels ===== */
-.team-panels { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.team-panels { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.team-panels[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+.team-panels[data-count="3"] { grid-template-columns: repeat(3, 1fr); }
+.team-panels[data-count="4"] { grid-template-columns: repeat(4, 1fr); }
 .team-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-3) var(--sp-4); transition: all var(--duration-base); }
 .team-panel.active { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-light); }
 .team-panel.finished { opacity: 0.6; }
@@ -55,13 +58,13 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 #dice-display { font-size: 3em; font-weight: 800; color: var(--warning); min-width: 80px; display: inline-block; transition: transform 0.15s; }
 
 /* ===== Question ===== */
-#question-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-5); text-align: center; margin-bottom: var(--sp-4); }
-#question-text { font-size: 2em; font-weight: 700; color: var(--warning); margin-bottom: var(--sp-4); font-variant-numeric: tabular-nums; }
-.answer-row { display: flex; gap: var(--sp-3); justify-content: center; align-items: center; }
-#answer-input { width: 160px; padding: var(--sp-3) var(--sp-4); border: 2px solid var(--border); border-radius: var(--r-md); background: var(--surface-hover); color: var(--text-primary); font-size: 1.1em; font-family: inherit; text-align: center; }
+#question-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-3); text-align: center; margin-bottom: var(--sp-3); }
+#question-text { font-size: 1.6em; font-weight: 700; color: var(--warning); margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums; }
+.answer-row { display: flex; gap: var(--sp-2); justify-content: center; align-items: center; flex-wrap: wrap; }
+#answer-input { width: 120px; padding: var(--sp-2) var(--sp-3); border: 2px solid var(--border); border-radius: var(--r-md); background: var(--surface-hover); color: var(--text-primary); font-size: 1em; font-family: inherit; text-align: center; }
 #answer-input:focus { outline: none; border-color: var(--accent); }
-.result-text { font-size: 1.2em; font-weight: 700; margin-bottom: var(--sp-2); }
-.result-detail { font-size: 0.9em; color: var(--text-secondary); }
+.result-text { font-size: 1.1em; font-weight: 700; margin-bottom: var(--sp-1); }
+.result-detail { font-size: 0.85em; color: var(--text-secondary); min-height: 1.2em; }
 
 /* ===== Controls ===== */
 .controls { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
@@ -78,7 +81,7 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 /* ===== Responsive ===== */
 @media (max-width: 600px) { .team-panels { grid-template-columns: repeat(2, 1fr); } .cell { width: 36px; height: 36px; font-size: 0.75em; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-BmZhuvHG.js"></script>
+  <script type="module" crossorigin src="./assets/main-B1M0fh-d.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/StorageService-ClyGpF2g.js">
   <link rel="stylesheet" crossorigin href="./assets/main-DdTYJK8k.css">
 </head>
@@ -89,13 +92,18 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
   <div id="setup-screen">
     <div class="header">
       <h1>🎲 数学飞行棋 · 课堂版</h1>
-      <p>4队同屏竞技，率先全部到达终点者获胜</p>
+      <p>1~4队同屏竞技，率先到达终点者获胜</p>
     </div>
     <div class="setup-controls">
       <select id="grade-select" aria-label="选择年级">
         <option value="1">1年级</option>
         <option value="2">2年级</option>
         <option value="3">3年级</option>
+      </select>
+      <select id="team-count-select" aria-label="选择队伍数量">
+        <option value="2">2队</option>
+        <option value="3">3队</option>
+        <option value="4" selected>4队</option>
       </select>
       <div class="semester-group" role="group" aria-label="选择学期">
         <label><input type="radio" name="semester" value="上" checked> 上学期</label>
