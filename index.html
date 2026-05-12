@@ -22,16 +22,22 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 .btn { padding: var(--sp-3) var(--sp-5); background: linear-gradient(135deg, var(--accent-dark), var(--accent)); border: none; border-radius: var(--r-md); color: #fff; font-size: 0.95em; font-weight: 600; font-family: inherit; cursor: pointer; box-shadow: 0 4px 16px rgba(124,58,237,0.35); transition: all var(--duration-base) var(--ease-out); transform: scale(0.97); opacity: 0.9; }
 .btn:hover { transform: translateY(-2px) scale(1); opacity: 1; box-shadow: 0 8px 24px rgba(124,58,237,0.45); }
 .btn:active { transform: scale(0.97); }
+.hint-warn { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); color: #f59e0b; font-size: 0.85em; text-align: center; max-width: 400px; }
+.hint-warn a { color: #f59e0b; font-weight: 600; }
 
-/* ===== Game Header ===== */
+/* ===== Game Screen Layout ===== */
+#game-screen { display: flex; flex-direction: column; }
 #game-header { display: flex; justify-content: space-between; align-items: center; padding: var(--sp-3) var(--sp-5); background: rgba(0,0,0,0.3); border-radius: var(--r-lg); margin-bottom: var(--sp-4); backdrop-filter: blur(8px); border: 1px solid var(--border); }
+.game-layout { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.game-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.game-right { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+
 #game-header .team-info { font-size: 1.1em; font-weight: 600; color: var(--text-primary); }
 #game-header .grade-info { font-size: 0.85em; color: var(--text-secondary); }
 #header-phase { font-size: 1.2em; font-weight: 700; color: var(--accent); text-align: center; }
 
 /* ===== Board ===== */
-#board { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-4); overflow-x: auto; }
-.board-cells { display: grid; grid-template-columns: repeat(8, 48px); gap: 6px; justify-content: center; }
+#board { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-4); overflow-x: auto; display: grid; grid-template-columns: repeat(8, 48px); gap: 6px; justify-content: center; }
 .cell { width: 48px; height: 48px; background: var(--surface-hover); border: 1px solid var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 0.85em; font-weight: 600; color: var(--text-secondary); position: relative; flex-shrink: 0; transition: all var(--duration-base); }
 .cell-start { background: rgba(52,199,89,0.15); border-color: var(--success); color: var(--success); }
 .cell-finish { background: rgba(251,191,36,0.15); border-color: var(--warning); color: var(--warning); }
@@ -54,13 +60,23 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 .team-score { font-size: 0.8em; color: var(--text-muted); margin-top: var(--sp-1); }
 
 /* ===== Dice ===== */
-.dice-area { text-align: center; padding: var(--sp-5); }
-#dice-display { font-size: 3em; font-weight: 800; color: var(--warning); min-width: 80px; display: inline-block; transition: transform 0.15s; }
+#dice-display { text-align: center; padding: var(--sp-5); font-size: 3em; font-weight: 800; color: var(--warning); min-width: 80px; display: inline-block; transition: transform 0.15s; }
+.dice-side { text-align: center; padding: var(--sp-4); font-size: 3.5em; font-weight: 800; color: var(--warning); min-height: 80px; display: flex; align-items: center; justify-content: center; }
+
+/* ===== Countdown ===== */
+.countdown-box { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-3); }
+#countdown-num { font-size: 2.5em; font-weight: 800; color: var(--accent); line-height: 1; }
+.countdown-bar { height: 6px; background: var(--border); border-radius: 3px; margin-top: var(--sp-2); overflow: hidden; }
+#countdown-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--success)); border-radius: 3px; transition: width 1s linear; width: 100%; }
+
+/* ===== Rolling Animation ===== */
+@keyframes diceRoll { 0%{transform:rotate(-15deg) scale(1.1)} 50%{transform:rotate(10deg) scale(0.95)} 100%{transform:rotate(0deg) scale(1)} }
+.dice-rolling { animation: diceRoll 0.15s ease-in-out infinite; }
 
 /* ===== Question ===== */
 #q-label { font-size: 0.85em; color: var(--text-secondary); margin-bottom: var(--sp-1); }
-#question-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-3); text-align: center; margin-bottom: var(--sp-3); }
-#question-text { font-size: 1.6em; font-weight: 700; color: var(--warning); margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums; }
+#question-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--sp-4); text-align: center; flex: 1; }
+#question-text { font-size: 2.2em; font-weight: 700; color: var(--warning); margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums; }
 
 .result-text { font-size: 1.1em; font-weight: 700; margin-bottom: var(--sp-1); }
 .result-detail { font-size: 0.85em; color: var(--text-secondary); min-height: 1.2em; }
@@ -80,8 +96,8 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
 /* ===== Responsive ===== */
 @media (max-width: 600px) { .team-panels { grid-template-columns: repeat(2, 1fr); } .cell { width: 36px; height: 36px; font-size: 0.75em; } }
 </style>
-  <script type="module" crossorigin src="./assets/main-DtVWEFDQ.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/StorageService-ClyGpF2g.js">
+  <script type="module" crossorigin src="./assets/main-DYOUDAEp.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/StorageService-8ITX0ZhK.js">
   <link rel="stylesheet" crossorigin href="./assets/main-DdTYJK8k.css">
 </head>
 <body>
@@ -110,6 +126,9 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
       </div>
       <button class="btn" id="start-btn" aria-label="开始游戏">🚀 开始游戏</button>
     </div>
+    <div id="no-questions-hint" class="hint-warn" style="display:none">
+      ⚠️ 当前无预设格子题，对错按钮不会显示，请先 <a href="cell-manager.html" target="_blank">添加题目</a>
+    </div>
   </div>
 
   <!-- Game Screen -->
@@ -119,27 +138,35 @@ select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px
       <div id="header-phase"></div>
       <div class="grade-info"><span id="header-grade">1年级上学期</span></div>
     </div>
-    <div class="team-panels">
-      <div class="team-panel active" data-team-id="0"><div class="team-name" style="color:#ef4444">红队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
-      <div class="team-panel" data-team-id="1"><div class="team-name" style="color:#3b82f6">蓝队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
-      <div class="team-panel" data-team-id="2"><div class="team-name" style="color:#f59e0b">黄队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
-      <div class="team-panel" data-team-id="3"><div class="team-name" style="color:#22c55e">绿队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
-    </div>
-    <div id="board"></div>
-    <div class="dice-area">
-      <div id="dice-display">?</div>
-    </div>
-    <div id="question-box" style="display:none">
-      <div id="q-label"></div>
-      <div id="question-text"></div>
-      <div id="result-text" class="result-text" style="margin-top:var(--sp-3)"></div>
-      <div id="result-detail" class="result-detail"></div>
-    </div>
-    <div class="controls">
-      <button class="btn" id="dice-btn" style="display:none">🎲 掷骰子</button>
-      <button class="btn" id="correct-btn" style="display:none">✅ 回答正确</button>
-      <button class="btn" id="wrong-btn" style="display:none">❌ 回答错误</button>
-      <button class="btn" id="next-team-btn" style="display:none">➡️ 下一队</button>
+    <div class="game-layout">
+      <div class="game-left">
+        <div class="team-panels">
+          <div class="team-panel active" data-team-id="0"><div class="team-name" style="color:#ef4444">红队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
+          <div class="team-panel" data-team-id="1"><div class="team-name" style="color:#3b82f6">蓝队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
+          <div class="team-panel" data-team-id="2"><div class="team-name" style="color:#f59e0b">黄队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
+          <div class="team-panel" data-team-id="3"><div class="team-name" style="color:#22c55e">绿队</div><div class="team-pos">第 0 格</div><div class="team-score">积分 0</div></div>
+        </div>
+        <div id="board"></div>
+      </div>
+      <div class="game-right">
+        <div id="dice-display-side" class="dice-side"></div>
+        <div id="countdown-display" class="countdown-box">
+          <div id="countdown-num">20</div>
+          <div class="countdown-bar"><div id="countdown-fill"></div></div>
+        </div>
+        <div id="question-box" style="display:none">
+          <div id="q-label"></div>
+          <div id="question-text"></div>
+          <div id="result-text" class="result-text" style="margin-top:var(--sp-3)"></div>
+          <div id="result-detail" class="result-detail"></div>
+        </div>
+        <div class="controls">
+          <button class="btn" id="dice-btn" style="display:none">🎲 掷骰子</button>
+          <button class="btn" id="correct-btn" style="display:none">✅ 回答正确</button>
+          <button class="btn" id="wrong-btn" style="display:none">❌ 回答错误</button>
+          <button class="btn" id="next-team-btn" style="display:none">➡️ 下一队</button>
+        </div>
+      </div>
     </div>
   </div>
 
