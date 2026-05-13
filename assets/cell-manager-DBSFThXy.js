@@ -216,4 +216,4 @@ function M() {
     j(), m(k), T(k, O ? `已更新` : `已添加`, `success`), O = null, A();
   });
 }
-D = E.loadStore(), document.addEventListener(`DOMContentLoaded`, () => A());
+D = E.loadStore(), document.readyState === "loading" ? document.addEventListener(`DOMContentLoaded`, () => A()) : A();
