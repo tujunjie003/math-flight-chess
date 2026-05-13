@@ -250,6 +250,8 @@ function j() {
   }
   l(`start-btn`).addEventListener(`click`, k), l(`dice-btn`).addEventListener(`click`, A), l(`correct-btn`).addEventListener(`click`, () => D == null ? void 0 : D.onCorrect()), l(`wrong-btn`).addEventListener(`click`, () => D == null ? void 0 : D.onWrong()), l(`next-team-btn`).addEventListener(`click`, () => D == null ? void 0 : D.onNextTeam()), l(`restart-btn`).addEventListener(`click`, () => {
     D = void 0, w.showScreen(`setup`);
+  }), l(`settings-btn`).addEventListener(`click`, () => {
+    window.open(`cell-manager.html`, `_blank`);
   }), w.showScreen(`setup`);
 }
 document.readyState === "loading" ? document.addEventListener(`DOMContentLoaded`, () => {
